@@ -1,7 +1,7 @@
-from json import dumps, loads
-
 from client.database.controller import ClientMessages
 from client.database.models import CBase
+
+from json import dumps, loads
 from client.client_config import ENCODING
 
 
@@ -51,10 +51,8 @@ class ConvertMixin:
 
             # Если там был словарь
             if isinstance(message, dict):
-                return message  # Возвращаем сообщение
+                return message              # Возвращаем сообщение
             else:
-                raise TypeError  # Нам прислали неверный тип
+                raise TypeError             # Нам прислали неверный тип
         else:
-            raise TypeError  # Передан неверный тип
-
-
+            raise TypeError                 # Передан неверный тип

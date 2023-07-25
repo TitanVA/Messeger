@@ -17,6 +17,9 @@ class ConsoleClientApp:
     def main(self):
         # create event loop
         loop = get_event_loop()
+        print(f"ох 1 - {loop}")
+        #for signame in ('SIGINT', 'SIGTERM'):
+            #loop.add_signal_handler(getattr(signal, signame), loop.stop)
 
         # authentication process
         auth = ClientAuth(db_path=self.db_path)
@@ -31,24 +34,30 @@ class ConsoleClientApp:
             else:
                 print('wrong username/password')
 
+        # Each client will create a new protocol instance
         tasks = []
         client_ = ChatClientProtocol(db_path=self.db_path,
                                      loop=loop,
                                      username=usr,
                                      password=passwrd)
-
+        # connect to our server
         try:
-            coro = loop.create_connection(lambda: client_, self.args["addr"],
-                                          self.args["port"])
+            coro = loop.create_connection(lambda: client_, self.args["addr"], self.args["port"])
+            print(f"ох 2 - {coro}")
             transport, protocol = loop.run_until_complete(coro)
+            print(f"ох 3 - {transport, protocol}")
         except ConnectionRefusedError:
             print('Error. wrong server')
             exit(1)
 
+        # Serve requests until Ctrl+C
         try:
-            task = loop.create_task(client_.get_from_console())
+            task = loop.create_task(client_.get_from_console())  # create Task from coroutine
+            print(f"ох 4 - {task}")
             tasks.append(task)
             loop.run_until_complete(task)
+            #await task
+            #run(task)
 
         except KeyboardInterrupt:
             pass
@@ -76,3 +85,6 @@ def parse_and_run():
         a = ConsoleClientApp(args, DB_PATH)
         a.main()
 
+
+if __name__ == '__main__':
+    parse_and_run()

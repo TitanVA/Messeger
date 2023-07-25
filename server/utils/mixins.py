@@ -1,7 +1,7 @@
-from json import dumps, loads
-
 from server.database.controller import ClientMessages
 from server.database.models import CBase
+
+from json import dumps, loads
 from server.server_config import ENCODING
 
 
@@ -56,5 +56,3 @@ class ConvertMixin:
                 raise TypeError  # Нам прислали неверный тип
         else:
             raise TypeError  # Передан неверный тип
-
-

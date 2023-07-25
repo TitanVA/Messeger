@@ -16,8 +16,7 @@ class ClientMessages:
         if self.get_client_by_username(username):
             return 'Пользователь {} уже существует'.format(username)
         else:
-            new_user = Client(username=username, password=password,
-                              info=info)
+            new_user = Client(username=username, password=password, info=info)
             self.dal.session.add(new_user)
             self.dal.session.commit()
             print('Добавлен пользователь: {}'.format(new_user))
@@ -44,6 +43,11 @@ class ClientMessages:
         return 'Пользователь {} не существует'.format(client_username)
 
     def set_user_online(self, client_username):
+        """
+         Set status to online
+        :param client_username:
+        :return:
+        """
         client = self.get_client_by_username(client_username)
         if client:
             client.online_status = True

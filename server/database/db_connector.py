@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker
 
 
 class DataAccessLayer:
+    """ access to DB fabric"""
+
     def __init__(self, conn_string, base, echo=False):
         self.engine = None
         self.Session = None

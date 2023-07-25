@@ -1,3 +1,4 @@
+"""файл для запуска серверного приложения в цикле"""
 from argparse import ArgumentParser
 from asyncio import get_event_loop
 
@@ -52,3 +53,6 @@ def parse_and_run():
         a = ConsoleServerApp(args, DB_PATH)
         a.main()
 
+
+if __name__ == '__main__':
+    parse_and_run()

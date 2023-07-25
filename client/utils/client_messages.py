@@ -2,6 +2,7 @@ from datetime import datetime as dt
 
 
 class JimClientMessage:
+    """Client's requests protocol"""
     def auth(self, username, password):
         """
         Authorization message
