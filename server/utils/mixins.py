@@ -44,7 +44,7 @@ class ConvertMixin:
         :return: словарь сообщения
         """
         # Если переданы байты
-        if isinstance(msg_bytes, bytes):
+        try:
 
             jmessage = msg_bytes.decode(ENCODING)  # Декодируем
             message = loads(jmessage)  # Из json делаем словарь
@@ -54,5 +54,5 @@ class ConvertMixin:
                 return message  # Возвращаем сообщение
             else:
                 raise TypeError  # Нам прислали неверный тип
-        else:
+        except Exception as e:
             raise TypeError  # Передан неверный тип

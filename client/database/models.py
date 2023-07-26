@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 from sqlalchemy import ForeignKey
-from sqlalchemy import Column, Integer, String, DateTime, Unicode, BINARY, \
+from sqlalchemy import Column, Integer, String, DateTime, Unicode, Binary, \
     Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
@@ -14,7 +14,7 @@ class Client(CBase):
 
     id = Column(Integer(), primary_key=True)
     username = Column(String(50), unique=True, nullable=False)
-    password = Column(BINARY(), nullable=False)
+    password = Column(Binary(), nullable=False)
     info = Column(String(255), default='')
     online_status = Column(Boolean(), default=False)
 
