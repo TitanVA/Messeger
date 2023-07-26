@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow
-from aiogbserver.ui.server_monitor_ui import Ui_ServerWindow as server_ui_class
+from server.ui.server_monitor import Ui_ServerWindow as server_ui_class
 # pyuic5 -x login.ui -o login_ui.py  # update UI file
 
 
